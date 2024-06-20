@@ -12,26 +12,48 @@ enum RadioMessage {
 }
 input.onButtonPressed(Button.A, function () {
     radio.sendMessage(RadioMessage.Forward)
+    basic.showLeds(`
+        . . # . .
+        . # # # .
+        # # # # #
+        . . # . .
+        . . # . .
+        `)
 })
 input.onGesture(Gesture.TiltLeft, function () {
     radio.sendMessage(RadioMessage.Left)
-})
-input.onSound(DetectedSound.Loud, function () {
-    radio.sendMessage(RadioMessage.Light)
+    basic.showLeds(`
+        . . # . .
+        . # # . .
+        # # # # #
+        . # # . .
+        . . # . .
+        `)
 })
 input.onButtonPressed(Button.AB, function () {
     radio.sendMessage(RadioMessage.Lights)
 })
 input.onButtonPressed(Button.B, function () {
     radio.sendMessage(RadioMessage.backward)
+    basic.showLeds(`
+        . . # . .
+        . . # . .
+        # # # # #
+        . # # # .
+        . . # . .
+        `)
 })
 input.onGesture(Gesture.TiltRight, function () {
     radio.sendMessage(RadioMessage.Right)
+    basic.showLeds(`
+        . . # . .
+        . . # # .
+        # # # # #
+        . . # # .
+        . . # . .
+        `)
 })
-input.onLogoEvent(TouchButtonEvent.Touched, function () {
-    radio.sendMessage(RadioMessage.Stop)
-})
-radio.setGroup(2)
+radio.setGroup(5)
 basic.forever(function () {
     radio.sendMessage(RadioMessage.Wifi)
     basic.showLeds(`
@@ -69,5 +91,4 @@ basic.forever(function () {
         # # # # #
         # # # # #
         `)
-    basic.showString("Connected ")
 })
